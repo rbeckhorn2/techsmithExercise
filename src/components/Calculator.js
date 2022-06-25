@@ -21,25 +21,28 @@ function Calculator() {
             <span className='btn' onClick={() => handleNumberClick(9)}>9</span>
             <span className='btn' onClick={() => handleNumberClick(8)}>8</span>
             <span className='btn' onClick={() => handleNumberClick(7)}>7</span>
-            <span className='btn' onClick={() => handleAdditionClick()}>+</span>
+            <span className='btn' onClick={() => handleOperatorClick("+")}>+</span>
             </div>
             <div>
             <span className='btn' onClick={() => handleNumberClick(6)}>6</span>
             <span className='btn' onClick={() => handleNumberClick(5)}>5</span>
             <span className='btn' onClick={() => handleNumberClick(4)}>4</span>
-            <span className='btn' onClick={() => handleSubtractionClick()}>-</span>
+            <span className='btn' onClick={() => handleOperatorClick("-")}>-</span>
             </div>
             <div>
             <span className='btn' onClick={() => handleNumberClick(3)}>3</span>
             <span className='btn' onClick={() => handleNumberClick(2)}>2</span>
             <span className='btn' onClick={() => handleNumberClick(1)}>1</span>
-            <span className='btn' onClick={() => handleMultiplicationClick()}>*</span>
+            <span className='btn' onClick={() => handleOperatorClick("*")}>*</span>
             </div>
             <div>
             <span className='btn' onClick={() => handleNumberClick(0)}>0</span>
             <span className='btn' onClick={() => handleDecimalClick()}>.</span>
             <span className='btn' onClick={() => handleEqualSignClick()}>=</span>
-            <span className='btn' onClick={() => handleDivisionClick()}>/</span>
+            <span className='btn' onClick={() => handleOperatorClick("/")}>/</span>
+            </div>
+            <div>
+            <span className='btn' onClick={() => handleClearClick()}>AC</span>
             </div>
           </div>
       </div>
@@ -50,10 +53,19 @@ function Calculator() {
 
       // Appends digits to number value
       // Might of handled differently if calculator had parentheses for order of operations
-      const retNum = display * 10 + num
-      
-      setInput1Value(retNum);
-      setDisplay(retNum)
+     
+      if (operator1Value === "") {
+        const retNum = input1Value * 10 + num
+        setInput1Value(retNum);
+        setDisplay(retNum)
+
+      } else {
+        const retNum = input2Value * 10 + num
+        setInput2Value(retNum);
+        setDisplay(retNum)
+      }
+
+     
     }
 
     function handleDecimalClick(num) {
@@ -62,29 +74,27 @@ function Calculator() {
       //Handle non 2 Decimals
     }
 
-    function handleAdditionClick() {
+    function handleOperatorClick(op) {
       //alert("Addition");
-      if (operator1Value === "") {
-        setOperator1Value("+");
-      } else { 
-        var retNum = input1Value + 1111; //testing Add 
-        setDisplay(retNum);
-        setOperator1Value("");
-      }
+      if (operator1Value === "") 
+        setOperator1Value(op);
     }
     
-    function handleSubtractionClick() {
-      alert("Subtraction");
-      
+    function handleClearClick() {
+      setInput1Value(0);
+      setInput2Value(0);
+      setOperator1Value("");
+      setDisplay(0);
     }
-    function handleMultiplicationClick() {
-      alert("Multiplication");
-    }
-    function handleDivisionClick() {
-      alert("Division");
-    }
-    function handleEqualSignClick() {
-      alert("EqualSign");
-    }
+
+   function  handleEqualSignClick() {
+      alert("Equals");
+      if (operator1Value !== "") {
+        alert("ret1");
+        const retNum = eval(input1Value + operator1Value + input2Value);
+        alert("ret2");
+        setDisplay(retNum);
+     }
+   }
   }
   export default Calculator;
