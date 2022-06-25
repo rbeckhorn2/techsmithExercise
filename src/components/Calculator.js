@@ -5,7 +5,11 @@ function Calculator() {
    const [display, setDisplay] = useState(0);
    // Input 1 will handle first numeric value added before operator is clicked
 
-   const [input1Value, setInput1Value] = useState("0");
+   const [input1Value, setInput1Value] = useState(0);
+   const [input2Value, setInput2Value] = useState(0);
+   const [operator1Value, setOperator1Value] = useState("");
+   const [operator2Value, setOperator2Value] = useState("");
+
    // Soon: add state for Input1, Operator1, Input2 and Operator2
    //const [input1Value, setInput1Value] = useState(0);
 
@@ -47,20 +51,31 @@ function Calculator() {
       // Appends digits to number value
       // Might of handled differently if calculator had parentheses for order of operations
       const retNum = display * 10 + num
-
+      
       setInput1Value(retNum);
       setDisplay(retNum)
     }
 
     function handleDecimalClick(num) {
-      setDisplay(display + ".")
+      setDisplay(display + ".");
+      //Not Implemented Yet;
       //Handle non 2 Decimals
     }
+
     function handleAdditionClick() {
-      alert("Addition");
+      //alert("Addition");
+      if (operator1Value === "") {
+        setOperator1Value("+");
+      } else { 
+        var retNum = input1Value + 1111; //testing Add 
+        setDisplay(retNum);
+        setOperator1Value("");
+      }
     }
+    
     function handleSubtractionClick() {
       alert("Subtraction");
+      
     }
     function handleMultiplicationClick() {
       alert("Multiplication");
