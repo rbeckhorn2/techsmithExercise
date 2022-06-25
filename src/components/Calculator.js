@@ -12,27 +12,34 @@ function Calculator() {
   return ( 
       <div>
         <input id="display" type='text' value={display} readOnly></input>
-        <div>
-        <span className='btn' onClick={() => handleNumberClick(9)}>9</span>
-        <span className='btn' onClick={() => handleNumberClick(8)}>8</span>
-        <span className='btn' onClick={() => handleNumberClick(7)}>7</span>
-        </div>
-        <div>
-        <span className='btn' onClick={() => handleNumberClick(6)}>6</span>
-        <span className='btn' onClick={() => handleNumberClick(5)}>5</span>
-        <span className='btn' onClick={() => handleNumberClick(4)}>4</span>
-        </div>
-        <div>
-        <div>
-        <span className='btn' onClick={() => handleNumberClick(3)}>3</span>
-        <span className='btn' onClick={() => handleNumberClick(2)}>2</span>
-        <span className='btn' onClick={() => handleNumberClick(1)}>1</span>
-        </div></div>
-        <div>
-        <span className='btn' onClick={() => handleNumberClick(0)}>0</span>
-        <span className='btn' onClick={() => handleDecimalClick()}>.</span>
-        </div>
+          <div>
+            <div>
+            <span className='btn' onClick={() => handleNumberClick(9)}>9</span>
+            <span className='btn' onClick={() => handleNumberClick(8)}>8</span>
+            <span className='btn' onClick={() => handleNumberClick(7)}>7</span>
+            <span className='btn' onClick={() => handleAdditionClick()}>+</span>
+            </div>
+            <div>
+            <span className='btn' onClick={() => handleNumberClick(6)}>6</span>
+            <span className='btn' onClick={() => handleNumberClick(5)}>5</span>
+            <span className='btn' onClick={() => handleNumberClick(4)}>4</span>
+            <span className='btn' onClick={() => handleSubtractionClick()}>-</span>
+            </div>
+            <div>
+            <span className='btn' onClick={() => handleNumberClick(3)}>3</span>
+            <span className='btn' onClick={() => handleNumberClick(2)}>2</span>
+            <span className='btn' onClick={() => handleNumberClick(1)}>1</span>
+            <span className='btn' onClick={() => handleMultiplicationClick()}>*</span>
+            </div>
+            <div>
+            <span className='btn' onClick={() => handleNumberClick(0)}>0</span>
+            <span className='btn' onClick={() => handleDecimalClick()}>.</span>
+            <span className='btn' onClick={() => handleEqualSignClick()}>=</span>
+            <span className='btn' onClick={() => handleDivisionClick()}>/</span>
+            </div>
+          </div>
       </div>
+
     );
 
     function handleNumberClick(num) {
@@ -46,9 +53,23 @@ function Calculator() {
     }
 
     function handleDecimalClick(num) {
-
       setDisplay(display + ".")
       //Handle non 2 Decimals
+    }
+    function handleAdditionClick() {
+      alert("Addition");
+    }
+    function handleSubtractionClick() {
+      alert("Subtraction");
+    }
+    function handleMultiplicationClick() {
+      alert("Multiplication");
+    }
+    function handleDivisionClick() {
+      alert("Division");
+    }
+    function handleEqualSignClick() {
+      alert("EqualSign");
     }
   }
   export default Calculator;
